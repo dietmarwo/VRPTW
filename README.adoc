@@ -15,7 +15,7 @@ This repository contains:
 
 - https://github.com/dietmarwo/VRPTW/blob/master/benchmark.py[benchmark.py] - parsing the benchmark files and generating solution files.
 - https://github.com/dietmarwo/VRPTW/blob/master/optimize_or.py[optimize_or.py] - generating solutions using or-tools.
-- https://github.com/dietmarwo/VRPTW/blob/master/optimize.py[optimize.py] - generating solutions using continous optimization.
+- https://github.com/dietmarwo/VRPTW/blob/master/optimize.py[optimize.py] - generating solutions using continuous optimization.
 
 === Motivation
 
