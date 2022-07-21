@@ -1,0 +1,293 @@
+:encoding: utf-8
+:imagesdir: tutorials/img
+:cpp: C++
+
+= VRPTW solutions 
+
+=== Average Results
+
+==== or-tools hierarchical objective results compared to sintef
+
+The distance results are partly better for
+or-tools, because these are results for 
+the hierarchical objective prioritizing
+the number of vehicles. According to the hierarchical objective
+the sintef results are slightly better, or-tools is not
+always able to reduce the vehicle number as far, although
+a heavy vehicle-penalty was defined in the code.
+Nevertheless or-tools was able to produce nearly perfect results.
+
+The or-tools results were generated using a 16 core 
+AMD 5950x CPU, 12 optimizations performed in parallel,
+each optimization configured using 3 hours wall-time. 
+
+.Average distance hierarchical objective
+[width="70%", options="header"]
+|===
+|optimizer|C1|C2|R1|R2|RC1|RC2
+|sintef|828.4|589.9|1231.1|968.2|1406.1|1089.8
+|or-tools|828.5|598.7|1209.0|928.6|1385.6|1114.8
+|%difference|0.02|1.5|-1.79|-4.09|-1.46|2.29
+|===
+
+.Average number of vehicles hierarchical objective
+[width="70%", options="header"]
+|===
+|optimizer|C1|C2|R1|R2|RC1|RC2
+|sintef|10.0|3.0|12.18|2.88|11.57|3.33
+|or-tools|10.0|3.12|12.42|3.09|12.12|3.38
+|%difference|0.0|4.17|1.93|7.51|4.78|1.25
+|===
+
+==== or-tools single objective results compared to sintef
+
+Configuring or-tools to optimize only for
+distance we see better distance values and worse 
+vehicle numbers. The or-tools distance results
+are similar to the values given in 
+http://web.cba.neu.edu/~msolomon/heuristi.htm . 
+Please notify me if you have reference solutions
+(missing from http://web.cba.neu.edu/~msolomon) for
+the single objective. 
+
+.Average distance single objective
+[width="70%", options="header"]
+|===
+|optimizer|C1|C2|R1|R2|RC1|RC2
+|sintef|828.4|589.9|1231.1|968.2|1406.1|1089.8
+|or-tools|828.4|589.9|1182.6|878.0|1360.9|1005.3
+|%difference|0.0|-0.0|-3.94|-9.31|-3.22|-7.75
+|===
+
+.Average number of vehicles single objective
+[width="70%", options="header"]
+|===
+|optimizer|C1|C2|R1|R2|RC1|RC2
+|sintef|10.0|3.0|12.18|2.88|11.57|3.33
+|or-tools|10.0|3.0|13.33|5.45|13.12|6.25
+|%difference|0.0|0.0|9.45|89.72|13.43|87.5
+|===
+
+==== Continuous single objective results compared to or-tools 
+
+Continuous optimization is performed by a sequence 
+of CRMF-NES and BiteOpt using together 1E7 evaluations per run, 
+64 runs, 32 runs performed in parallel. On an AMD 5950x 16 core
+CPU this takes about 7 minutes. 
+
+Compared to the or-tools result which serves as a reference 
+we loose about 0.2% for the clustered problem instances and about 
+3% for the random problem instances. Contact me if you 
+succeed in producing better results using any continuous optimizer. 
+
+Note that increasing the weight for the number of objectives
+doesn't work as well as for or-tools, so we omit the hierarchical
+objective in this comparison. 
+
+.Average distance single objective
+[width="70%", options="header"]
+|===
+|optimizer|C1|C2|R1|R2|RC1|RC2
+|or-tools|828.4|589.9|1182.6|878.0|1360.9|1005.3
+|continuous|829.3|591.8|1221.6|909.7|1384.2|1035.2
+|%difference|0.11|0.34|3.3|3.61|1.71|2.97
+|===
+
+.Average number of vehicles single objective
+[width="70%", options="header"]
+|===
+|optimizer|C1|C2|R1|R2|RC1|RC2
+|or-tools|10.0|3.0|13.33|5.45|13.12|6.25
+|continuous|10.0|3.0|14.0|5.36|13.88|6.75
+|%difference|0.0|0.0|5.0|-1.67|5.71|8.0
+|===
+
+=== Detailed results, hierarchical objective
+
+.or-tools hierarchical objective results compared to sintef
+[width="50%", options="header"]
+|===
+|problem |vehicles | distance | % vehicles difference | % distance difference
+|c101|10|828.9|0.0|0.0
+|c102|10|828.9|0.0|0.0
+|c103|10|828.1|0.0|-0.0
+|c104|10|825.6|0.0|0.11
+|c105|10|828.9|0.0|0.0
+|c106|10|828.9|0.0|0.0
+|c107|10|828.9|0.0|0.0
+|c108|10|828.9|0.0|0.0
+|c109|10|829.4|0.0|0.05
+|c201|3|591.6|0.0|-0.0
+|c202|3|591.6|0.0|-0.0
+|c203|3|591.2|0.0|-0.0
+|c204|3|593.9|0.0|0.56
+|c205|3|588.9|0.0|-0.0
+|c206|3|588.5|0.0|-0.0
+|c207|3|588.3|0.0|0.0
+|c208|4|655.9|33.33|11.48
+|r101|19|1651.2|0.0|0.03
+|r102|17|1487.0|0.0|0.06
+|r103|13|1303.5|0.0|0.83
+|r104|10|1002.1|11.11|-0.52
+|r105|14|1385.3|0.0|0.6
+|r106|12|1267.8|0.0|1.26
+|r107|10|1141.3|0.0|3.32
+|r108|10|956.9|11.11|-0.42
+|r109|12|1162.6|9.09|-2.69
+|r110|11|1106.6|10.0|-1.09
+|r111|11|1071.4|10.0|-2.31
+|r112|10|972.3|???|???
+|r201|4|1257.8|0.0|0.43
+|r202|4|1097.7|33.33|-7.89
+|r203|3|949.4|???|???
+|r204|3|753.2|50.0|-8.76
+|r205|3|1021.6|0.0|2.73
+|r206|3|916.9|0.0|1.19
+|r207|3|820.5|???|???
+|r208|2|730.5|0.0|0.51
+|r209|3|919.9|0.0|1.18
+|r210|3|956.3|0.0|1.8
+|r211|3|790.3|???|???
+|rc101|15|1632.0|7.14|-3.83
+|rc102|13|1528.8|8.33|-1.67
+|rc103|11|1326.1|0.0|5.11
+|rc104|10|1151.2|0.0|1.38
+|rc105|14|1593.0|7.69|-2.24
+|rc106|12|1441.5|9.09|1.18
+|rc107|11|1262.4|???|???
+|rc108|11|1149.7|10.0|0.87
+|rc201|4|1437.3|0.0|2.16
+|rc202|4|1161.3|???|???
+|rc203|3|1097.6|???|???
+|rc204|3|801.6|0.0|0.4
+|rc205|4|1311.9|0.0|1.1
+|rc206|3|1184.2|0.0|3.31
+|rc207|3|1085.2|0.0|2.27
+|rc208|3|839.1|0.0|1.33
+|===
+
+=== Detailed results, single objective
+
+.or-tools single objective results compared to sintef 
+[width="50%", options="header"]
+|===
+|problem |vehicles | distance | % vehicles difference | % distance difference
+|c101|10|828.9|0.0|0.0
+|c102|10|828.9|0.0|0.0
+|c103|10|828.1|0.0|-0.0
+|c104|10|824.8|0.0|0.0
+|c105|10|828.9|0.0|0.0
+|c106|10|828.9|0.0|0.0
+|c107|10|828.9|0.0|0.0
+|c108|10|828.9|0.0|0.0
+|c109|10|828.9|0.0|0.0
+|c201|3|591.6|0.0|0.0
+|c202|3|591.6|0.0|-0.0
+|c203|3|591.2|0.0|-0.0
+|c204|3|590.6|0.0|-0.0
+|c205|3|588.9|0.0|-0.0
+|c206|3|588.5|0.0|-0.0
+|c207|3|588.3|0.0|-0.0
+|c208|3|588.3|0.0|0.0
+|r101|20|1643.4|5.26|-0.45
+|r102|18|1472.8|5.88|-0.9
+|r103|14|1213.6|7.69|-6.12
+|r104|11|983.8|22.22|-2.34
+|r105|15|1360.8|7.14|-1.19
+|r106|13|1240.6|8.33|-0.91
+|r107|11|1077.5|10.0|-2.46
+|r108|11|953.1|22.22|-0.81
+|r109|13|1151.9|18.18|-3.59
+|r110|12|1083.5|20.0|-3.16
+|r111|12|1054.6|20.0|-3.84
+|r112|10|955.7|???|???
+|r201|8|1148.0|100.0|-8.34
+|r202|8|1036.5|166.67|-13.03
+|r203|6|875.6|???|???
+|r204|5|735.8|150.0|-10.87
+|r205|5|956.0|66.67|-3.86
+|r206|5|881.6|66.67|-2.71
+|r207|4|798.1|???|???
+|r208|4|706.2|100.0|-2.84
+|r209|5|859.9|66.67|-5.42
+|r210|6|904.8|100.0|-3.68
+|r211|4|755.9|???|???
+|rc101|17|1647.3|21.43|-2.93
+|rc102|14|1478.6|16.67|-4.9
+|rc103|12|1319.4|9.09|4.57
+|rc104|10|1150.9|0.0|1.35
+|rc105|16|1532.1|23.08|-5.97
+|rc106|13|1385.9|18.18|-2.73
+|rc107|12|1236.3|???|???
+|rc108|11|1137.0|10.0|-0.25
+|rc201|9|1265.8|125.0|-10.03
+|rc202|8|1096.5|???|???
+|rc203|5|935.2|???|???
+|rc204|4|786.4|33.33|-1.51
+|rc205|7|1157.7|75.0|-10.79
+|rc206|7|1054.6|133.33|-8.0
+|rc207|6|966.4|100.0|-8.93
+|rc208|4|780.1|33.33|-5.81
+|===
+
+.Continous single objective results compared to or-tools
+[width="50%", options="header"]
+|===
+|problem |vehicles | distance | % vehicles difference | % distance difference
+|c101|10|828.9|0.0|-0.0
+|c102|10|828.9|0.0|0.0
+|c103|10|830.2|0.0|0.26
+|c104|10|831.1|0.0|0.77
+|c105|10|828.9|0.0|-0.0
+|c106|10|828.9|0.0|-0.0
+|c107|10|828.9|0.0|-0.0
+|c108|10|828.9|0.0|-0.0
+|c109|10|828.9|0.0|-0.0
+|c201|3|591.6|0.0|-0.0
+|c202|3|591.6|0.0|0.0
+|c203|3|594.7|0.0|0.6
+|c204|3|603.0|0.0|2.09
+|c205|3|588.9|0.0|-0.0
+|c206|3|588.5|0.0|-0.0
+|c207|3|588.3|0.0|0.0
+|c208|3|588.3|0.0|0.0
+|r101|20|1670.4|0.0|1.64
+|r102|18|1501.8|0.0|1.97
+|r103|15|1246.5|7.14|2.71
+|r104|12|1024.1|9.09|4.1
+|r105|16|1407.9|6.67|3.46
+|r106|14|1289.2|7.69|3.91
+|r107|12|1119.3|9.09|3.88
+|r108|11|990.1|0.0|3.87
+|r109|14|1202.8|7.69|4.42
+|r110|13|1116.0|8.33|3.0
+|r111|12|1083.0|0.0|2.69
+|r112|11|1008.6|10.0|5.53
+|r201|8|1188.0|0.0|3.49
+|r202|6|1067.7|-25.0|3.01
+|r203|6|908.7|0.0|3.78
+|r204|5|766.7|0.0|4.2
+|r205|5|978.8|0.0|2.38
+|r206|4|918.8|-20.0|4.23
+|r207|4|835.5|0.0|4.69
+|r208|4|741.4|0.0|4.99
+|r209|6|883.8|20.0|2.78
+|r210|7|934.6|16.67|3.29
+|r211|4|783.1|0.0|3.59
+|rc101|17|1673.5|0.0|1.59
+|rc102|15|1490.4|7.14|0.8
+|rc103|13|1312.2|8.33|-0.54
+|rc104|11|1190.5|10.0|3.45
+|rc105|17|1576.5|6.25|2.9
+|rc106|13|1401.8|0.0|1.15
+|rc107|13|1258.1|8.33|1.77
+|rc108|12|1170.6|9.09|2.96
+|rc201|9|1297.6|0.0|2.51
+|rc202|8|1124.3|0.0|2.54
+|rc203|6|974.5|20.0|4.2
+|rc204|5|828.5|25.0|5.35
+|rc205|7|1176.2|0.0|1.6
+|rc206|7|1092.5|0.0|3.59
+|rc207|7|982.9|16.67|1.71
+|rc208|5|805.4|25.0|3.25
+|===
