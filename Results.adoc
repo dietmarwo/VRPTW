@@ -46,9 +46,6 @@ distance we see better distance values and worse
 vehicle numbers. The or-tools distance results
 are similar to the values given in 
 http://web.cba.neu.edu/~msolomon/heuristi.htm . 
-Please notify me if you have reference solutions
-(missing from http://web.cba.neu.edu/~msolomon) for
-the single objective. 
 
 .Average distance single objective
 [width="70%", options="header"]
@@ -66,6 +63,31 @@ the single objective.
 |sintef|10.0|3.0|12.18|2.88|11.57|3.33
 |or-tools|10.0|3.0|13.33|5.45|13.12|6.25
 |%difference|0.0|0.0|9.45|89.72|13.43|87.5
+|===
+
+==== or-tools single objective results compared to galgos
+
+Keep in mind that http://vrp.galgos.inf.puc-rio.br/index.php/en/[galgos]
+results perform rounding of the distances, eight of these results
+violate our verification. Unfortunately we didn't find other reference solutions. 
+Nevertheless we see that the or-tools solutions are nearly perfect.
+
+.Average distance single objective
+[width="70%", options="header"]
+|===
+|optimizer|C1|C2|R1|R2|RC1|RC2
+|galgos|828.4|589.9|1178.5|876.9|1338.1|1004.0
+|or_no_vnum|828.4|589.9|1182.6|878.0|1360.9|1005.3
+|%difference|0.0|0.0|0.35|0.13|1.7|0.13
+|===
+
+.Average number of vehicles single objective
+[width="70%", options="header"]
+|===
+|optimizer|C1|C2|R1|R2|RC1|RC2
+|galgos|10.0|3.0|13.25|5.45|12.5|6.25
+|or_no_vnum|10.0|3.0|13.33|5.45|13.12|6.25
+|%difference|0.0|0.0|0.63|0.0|5.0|0.0
 |===
 
 ==== Continuous single objective results compared to or-tools 
@@ -100,6 +122,31 @@ objective in this comparison.
 |or-tools|10.0|3.0|13.33|5.45|13.12|6.25
 |continuous|10.0|3.0|14.0|5.36|13.88|6.75
 |%difference|0.0|0.0|5.0|-1.67|5.71|8.0
+|===
+
+==== Continuous single objective results compared to galgos
+
+Keep in mind that http://vrp.galgos.inf.puc-rio.br/index.php/en/[galgos]
+results perform rounding of the distances, eight of these results
+violate our verification. Unfortunately we didn't find other reference solutions.
+There is not much difference to the comparison with or-tools. 
+
+.Average distance single objective
+[width="70%", options="header"]
+|===
+|optimizer|C1|C2|R1|R2|RC1|RC2
+|galgos|828.4|589.9|1178.5|876.9|1338.1|1004.0
+|crfm_bite|829.3|591.8|1221.6|909.7|1384.2|1035.2
+|%difference|0.11|0.34|3.66|3.74|3.44|3.11
+|===
+
+.Average number of vehicles single objective
+[width="70%", options="header"]
+|===
+|optimizer|C1|C2|R1|R2|RC1|RC2
+|galgos|10.0|3.0|13.25|5.45|12.5|6.25
+|crfm_bite|10.0|3.0|14.0|5.36|13.88|6.75
+|%difference|0.0|0.0|5.66|-1.67|11.0|8.0
 |===
 
 === Detailed results, hierarchical objective
