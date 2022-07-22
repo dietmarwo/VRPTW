@@ -58,7 +58,9 @@ There exist two different objectives for the Solomon's VRPTW benchmark:
 - A hierarchical objective minimizing the number of vehicles with the distance as secondary objective: 
 https://www.sintef.no/projectweb/top/vrptw/100-customers/[sintef].
 
-Unfortunately for the distance-objective we couldn't find reference solutions. And for both objectives there are no solution sets available
+For the distance-objective we found reference solutions at http://vrp.galgos.inf.puc-rio.br/index.php/en/[galgos], 
+but some of them didn't pass our validation. These solution assume rounding of the distances, which makes them
+incompatible to the interpretation of the problem used here. For both objective variants there are no solution sets available
 for existing open source tools. In this github repository we want to collect these, starting with or-tools and continuous optimization. 
 Creation of the solution sets should be reproducible, so we added the code which computes them. Feel free to create a PR if you
 find an improvement or want to add another open source tool. 
