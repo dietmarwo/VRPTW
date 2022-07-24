@@ -27,7 +27,7 @@ each optimization configured using 3 hours wall-time.
 |optimizer|C1|C2|R1|R2|RC1|RC2
 |sintef|828.4|589.9|1231.1|968.2|1406.1|1089.8
 |or-tools|828.5|598.7|1209.0|928.6|1385.6|1114.8
-|%difference|0.02|1.5|-1.79|-4.09|-1.46|2.29
+|%deviation|0.02|1.5|-1.79|-4.09|-1.46|2.29
 |===
 
 .Average number of vehicles hierarchical objective
@@ -36,7 +36,7 @@ each optimization configured using 3 hours wall-time.
 |optimizer|C1|C2|R1|R2|RC1|RC2
 |sintef|10.0|3.0|12.18|2.88|11.57|3.33
 |or-tools|10.0|3.12|12.42|3.09|12.12|3.38
-|%difference|0.0|4.17|1.93|7.51|4.78|1.25
+|%deviation|0.0|4.17|1.93|7.51|4.78|1.25
 |===
 
 ==== or-tools single objective results compared to sintef
@@ -53,7 +53,7 @@ http://web.cba.neu.edu/~msolomon/heuristi.htm .
 |optimizer|C1|C2|R1|R2|RC1|RC2
 |sintef|828.4|589.9|1231.1|968.2|1406.1|1089.8
 |or-tools|828.4|589.9|1182.6|878.0|1360.9|1005.3
-|%difference|0.0|-0.0|-3.94|-9.31|-3.22|-7.75
+|%deviation|0.0|-0.0|-3.94|-9.31|-3.22|-7.75
 |===
 
 .Average number of vehicles single objective
@@ -62,7 +62,7 @@ http://web.cba.neu.edu/~msolomon/heuristi.htm .
 |optimizer|C1|C2|R1|R2|RC1|RC2
 |sintef|10.0|3.0|12.18|2.88|11.57|3.33
 |or-tools|10.0|3.0|13.33|5.45|13.12|6.25
-|%difference|0.0|0.0|9.45|89.72|13.43|87.5
+|%deviation|0.0|0.0|9.45|89.72|13.43|87.5
 |===
 
 ==== or-tools single objective results compared to galgos
@@ -78,7 +78,7 @@ Nevertheless we see that the or-tools solutions are nearly perfect.
 |optimizer|C1|C2|R1|R2|RC1|RC2
 |galgos|828.4|589.9|1178.5|876.9|1338.1|1004.0
 |or-tools|828.4|589.9|1182.6|878.0|1360.9|1005.3
-|%difference|0.0|0.0|0.35|0.13|1.7|0.13
+|%deviation|0.0|0.0|0.35|0.13|1.7|0.13
 |===
 
 .Average number of vehicles single objective
@@ -87,7 +87,7 @@ Nevertheless we see that the or-tools solutions are nearly perfect.
 |optimizer|C1|C2|R1|R2|RC1|RC2
 |galgos|10.0|3.0|13.25|5.45|12.5|6.25
 |or-tools|10.0|3.0|13.33|5.45|13.12|6.25
-|%difference|0.0|0.0|0.63|0.0|5.0|0.0
+|%deviation|0.0|0.0|0.63|0.0|5.0|0.0
 |===
 
 ==== Continuous single objective results compared to or-tools 
@@ -112,7 +112,7 @@ objective in this comparison.
 |optimizer|C1|C2|R1|R2|RC1|RC2
 |or-tools|828.4|589.9|1182.6|878.0|1360.9|1005.3
 |continuous|829.3|591.8|1221.6|909.7|1384.2|1035.2
-|%difference|0.11|0.34|3.3|3.61|1.71|2.97
+|%deviation|0.11|0.34|3.3|3.61|1.71|2.97
 |===
 
 .Average number of vehicles single objective
@@ -121,7 +121,7 @@ objective in this comparison.
 |optimizer|C1|C2|R1|R2|RC1|RC2
 |or-tools|10.0|3.0|13.33|5.45|13.12|6.25
 |continuous|10.0|3.0|14.0|5.36|13.88|6.75
-|%difference|0.0|0.0|5.0|-1.67|5.71|8.0
+|%deviation|0.0|0.0|5.0|-1.67|5.71|8.0
 |===
 
 ==== Continuous single objective results compared to galgos
@@ -137,7 +137,7 @@ There is not much difference to the comparison with or-tools.
 |optimizer|C1|C2|R1|R2|RC1|RC2
 |galgos|828.4|589.9|1178.5|876.9|1338.1|1004.0
 |continuous|829.3|591.8|1221.6|909.7|1384.2|1035.2
-|%difference|0.11|0.34|3.66|3.74|3.44|3.11
+|%deviation|0.11|0.34|3.66|3.74|3.44|3.11
 |===
 
 .Average number of vehicles single objective
@@ -146,7 +146,7 @@ There is not much difference to the comparison with or-tools.
 |optimizer|C1|C2|R1|R2|RC1|RC2
 |galgos|10.0|3.0|13.25|5.45|12.5|6.25
 |continuous|10.0|3.0|14.0|5.36|13.88|6.75
-|%difference|0.0|0.0|5.66|-1.67|11.0|8.0
+|%deviation|0.0|0.0|5.66|-1.67|11.0|8.0
 |===
 
 === Detailed results, hierarchical objective
@@ -154,7 +154,7 @@ There is not much difference to the comparison with or-tools.
 .or-tools hierarchical objective results compared to sintef
 [width="50%", options="header"]
 |===
-|problem |vehicles | distance | % vehicles difference | % distance difference
+|problem |vehicles | distance | % vehicles deviation | % distance deviation
 |c101|10|828.9|0.0|0.0
 |c102|10|828.9|0.0|0.0
 |c103|10|828.1|0.0|-0.0
@@ -218,7 +218,7 @@ There is not much difference to the comparison with or-tools.
 .or-tools single objective results compared to sintef 
 [width="50%", options="header"]
 |===
-|problem |vehicles | distance | % vehicles difference | % distance difference
+|problem |vehicles | distance | % vehicles deviation | % distance deviation
 |c101|10|828.9|0.0|0.0
 |c102|10|828.9|0.0|0.0
 |c103|10|828.1|0.0|-0.0
@@ -280,7 +280,7 @@ There is not much difference to the comparison with or-tools.
 .Continous single objective results compared to or-tools
 [width="50%", options="header"]
 |===
-|problem |vehicles | distance | % vehicles difference | % distance difference
+|problem |vehicles | distance | % vehicles deviation | % distance deviation
 |c101|10|828.9|0.0|-0.0
 |c102|10|828.9|0.0|0.0
 |c103|10|830.2|0.0|0.26
