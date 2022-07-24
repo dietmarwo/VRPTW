@@ -113,8 +113,6 @@ class Benchmark():
         sum_demand = 0
         time = 0
         tour = []
-        print ("tour ", str(list(seq)))
-        print ("y ", y)
         for i in range(0, n+1):
             customer = seq[i] if i < n else 0
             demand = self.demand[customer]
@@ -126,7 +124,6 @@ class Benchmark():
                 dt = self. dtime[last, 0]
                 sum_dtime += dt
                 time = 0
-                print ("vehicle ", vehicles, "tour", tour, "demands", sum_demand, "dtime", sum_dtime)
                 lines.append('Route ' + str(vehicles) + ' : ' + ' '.join(map(str, tour)) + '\n')
                 sum_demand = 0
                 vehicles += 1
@@ -142,13 +139,11 @@ class Benchmark():
             if customer != 0:
                 tour.append(customer)
             last = customer
-        print ("vehicle ", vehicles, "tour", tour, "demands", sum_demand, "dtime", sum_dtime)
-        lines.append('Route ' + str(vehicles) + ' : ' + ' '.join(map(str, tour)) + '\n')
-        #visited += len(tour)
+        print ("vehicles ", vehicles-1, "demands", sum_demand, "dtime", sum_dtime)
         filename = 'solutions/' + opt_name + '_' + problem + '.txt'
         with open(filename, 'w') as f:
             f.writelines(lines)
-        return np.array([float(vehicles-1), sum_dtime])
+        print(''.join(lines))
 
     def dump_or(self, data, manager, routing, solution, opt_name='or-tools'):
         lines = []
@@ -166,8 +161,6 @@ class Benchmark():
                 index = solution.Value(routing.NextVar(index))
             if routing.IsEnd(index) and len(route) > 0:
                 routes.append(route)
-        visited = sum([len(r) for r in routes])
-        print(visited, routes) 
         n = self.number
         ri = 0
         ci = 0
@@ -178,7 +171,7 @@ class Benchmark():
         time = 0
         tour = []
         switch = False
-        for i in range(0, n):
+        for i in range(0, n+1):
             customer = routes[ri][ci] if i < n else 0
             demand = self.demand[customer]
             ready = self.ready[customer]
@@ -187,7 +180,6 @@ class Benchmark():
                 dt = self.dtime[last, 0]
                 sum_dtime += dt
                 time = 0
-                print ("vehicle ", vehicles, "tour", tour, "demands", sum_demand, "dtime", sum_dtime)
                 lines.append('Route ' + str(vehicles) + ' : ' + ' '.join(map(str, tour)) + '\n')
                 sum_demand = 0
                 vehicles += 1
@@ -209,11 +201,12 @@ class Benchmark():
                 ri += 1
                 ci = 0
                 switch = True
-        print ("vehicle ", vehicles, "tour", tour, "demands", sum_demand, "dtime", sum_dtime)
-        lines.append('Route ' + str(vehicles) + ' : ' + ' '.join(map(str, tour)) + '\n')
+        visited = sum([len(r) for r in routes])
+        print ("vehicles ", vehicles-1, "demands", sum_demand, "dtime", sum_dtime, "visited", visited)
         filename = 'solutions/' + opt_name + '_' + self.problem + '.txt'
         with open(filename, 'w') as f:
             f.writelines(lines)
+        print(''.join(lines))
     
 def evaluate_dir(dir):
     files = os.listdir(dir)
